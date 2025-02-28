@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="3D Portfolio of Marina Androvska - 3D Artist specializing in Modeling, Texturing, and Lighting.">
+  <meta name="keywords" content="3D Artist, Portfolio, Modeling, Texturing, Rendering, Computer Animation, Bournemouth University">
+  <title>3D Portfolio Website by Marina Androvska</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <nav>
+        <img src="img/Logo.png" alt="Marina Androvska Logo" class="logo" loading="lazy">
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact Me</a></li>
+        </ul>
+        <span class="menu-toggle" onclick="toggleMenu()" aria-expanded="false" aria-controls="nav-links">☰</span>
+    </nav>
+  </header>
+  
+  <section class="hero">
+    <div class="fireflies"></div> <!-- Fireflies go here -->
+    <div class="intro-container">
+        <div class="intro">
+            <p>Hi, I'm <span class="highlight">Marina Androvska</span>,<br>
+            a 3D Artist from Bournemouth University.</p>
+        </div>
+        <p class="hover-info">Hover over for more</p>
+    </div>
+  </section>
+<!---------------------------------------------------------------------------------------ABOUT ME--------------------------------------------------------------------------------------------------------------->
+<div id="about">
+  <div class="container_01">
+    <div class="row">
+      <div class="about-col-1">
+        <img src="img/Myself.jpg" alt="Portrait of Marina Androvska">
+      </div>
+      <div class="about-col-2">
+        <h1 class="sub-title">About Me</h1>
+        <p> I am currently enrolled as a student at Bournemouth University, 
+          pursuing a <b>BA (Hons) degree in Computer Animation Art & Design</b>. 
+          A dedicated graduate with over 3 years of experience in creating three-dimensional 
+          models, texturing, and lighting. Looking for a first-time position with a passion for 
+          continuous learning and personal growth. In summary, I am a passionate person who 
+          values continuous growth, embraces challenges, and thrives in a collaborative setting. 
+          I am excited about a forward-thinking organization that values innovation and excellence.
+        </p>
+        <div class="tab-titles">
+          <p class="tab-links active-link" onclick="opentab(event, 'skills')">Skills</p>
+          <p class="tab-links" onclick="opentab(event, 'experience')">Experience</p>
+          <p class="tab-links" onclick="opentab(event, 'education')">Education</p>
+        </div>
+        <div class="tab-contents active-tab" id="skills">
+          <ul>
+            <li><span>Primary Skills</span><br>Modelling and texturing stylized and real-world assets</li>
+            <li><span>Secondary Skills</span><br>Lighting and rendering</li>
+          </ul>
+        </div>
+        <div class="tab-contents" id="experience">
+          <ul>
+            <li><span>Experience</span><br> Learning programmes such as Maya, Blender, Unreal, ZBrush,
+            Substance Painter gave me a broad knowledge of the tools.</li>
+          </ul>
+        </div>
+        <div class="tab-contents" id="education">
+          <ul>
+            <li><span>University 2020-2023</span><br>Bournemouth University, Bournemouth, UK Faculty of Media & Communication</li>
+            <li><span>Secondary School 2015-2020</span><br>National School of Applied Arts "Saint Luke" Specialty Advertising Graphics</li>
+          </ul>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+
+
+<!------------------------------------------portfolio---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<div id="portfolio">
+  <div class="container_02">
+    <h1 class="sub-title">Portfolio</h1>
+    <div class="work-list">
+      <div class="work">
+        <img src="img/Orc.png" alt="3D Model of an Orc">
+        <div class="layer">
+          <h3>The orc</h3>
+          <p>A fantasy creature.</p>
+          <button class="button" href="#" onclick="show('popup')">View</button>
+        </div>
+      </div>
+      <div class="work">
+        <img src="img/Robot.png" alt="3D Model of a Futuristic Robot">
+        <div class="layer">
+          <h3>A futuristic machine</h3>
+          <p>A fantasy game made with Unreal Engine.</p>
+          <button class="button" href="#" onclick="show('popup_01')">View</button>
+        </div>
+      </div>
+      <div class="work">
+        <img id ="ORCimg" src="img/WATW.PNG" alt="War Among The Whales Video Game">
+        <div class="layer">
+          <h3>War Among The Whales</h3>
+          <p> A video game with the help of Unreal Engine.</p>
+          <button class="button" href="#" onclick="show('popup_02')">View</button>
+        </div>
+      </div>
+    </div>
+    <a href="WorkSubpage.html" class="btn">Go to gallery</a>
+  </div>
+</div>
+
+<!------------------------------------------------------------------CONNECTION & SOCIAL MEDIA----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="services">
+  <div class="container_03">
+    <h1 class="sub-title">Connection</h1>
+    <div class="services-list">
+      <div>
+        <i class="fa-brands fa-instagram" style="font-size: 2em; color: #E4405F;"></i>
+        <h2>Instagram</h2>
+        <p>Follow my journey on Instagram for the latest 3D artworks and behind-the-scenes content.</p>
+        <a href="#" class="learn-more">Learn more</a>
+      </div>
+      <div>
+        <i class="fa-brands fa-artstation" style="font-size: 2em; color: #13AFF0;"></i>
+        <h2>ArtStation</h2>
+        <p>Explore my professional portfolio on ArtStation, featuring my best 3D models and textures.</p>
+        <a href="#" class="learn-more">Learn more</a>
+      </div>
+      <div>
+        <i class="fa-brands fa-linkedin" style="font-size: 2em; color: #0077B5;"></i>
+        <h2>LinkedIn</h2>
+        <p>Connect with me on LinkedIn for professional insights and industry updates.</p>
+        <a href="#" class="learn-more">Learn more</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!----------------------------------contact----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="contact">
+  <div class="container_04">
+    <div class="row">
+      <div class="contact-left">
+        <h1 class="sub-title">Contact Me</h1>
+        <p><i class="fa-sharp fa-solid fa-at"></i> Email: marinaandrovska@outlook.com</p>
+        <p><i class="fa-solid fa-phone"></i>Phone number: +44 7562 111528</p>
+        <div class="social-icons">
+          <a href=""><i class="fab fa-facebook"></i></a>
+          <a href=""><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/marina-androvska-1aa5b21b9/"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.artstation.com/marinaandrovska2/albums/all"><i class="fa-brands fa-artstation"></i></a>
+        </div>
+        <a href="img/CV of Marina Androvska.pdf" download class="btn btn2">Download CV</a>
+        <a href="img/MarinaPortfolioPDF.pdf" download class="btn btn2">Download Portfolio</a>
+      </div>
+      <div class="contact-right">
+        <form>
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+          <button type="submit" class="btn2">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>Copyright © Marina Androvska. 2024-2025</p>
+  </div>
+</div>
+
+
+<!----------------------------------popups_mywork------------------------------------------------>
+<div class="popupempty" id="popupempty">
+</div>
+<div class="popup" id="popup">
+  <div class="row">
+    <div class="about-col-1">
+        <img src="img/Orc.png">
+    </div>
+    <div class="about-col-2">
+      <h1 class="sub-title">The Orc</h1>
+      <p> A model of orc is made with the help of ZBrush, Autodesk Maya and Substance Painter.
+      </p>
+    </div>  
+  </div>
+  <a href="#portfolio" onclick="hide('popup')">Close</a>
+</div>
+<div class="popup_01" id="popup_01">
+  <div class="row">
+    <div class="about-col-1">
+        <img src="img/Robot.png">
+    </div>
+    <div class="about-col-2">
+      <h1 class="sub-title">A futuristic machine</h1>
+      <p> A model of robot is made with the help of Autodesk Maya and Substance Painter.
+      </p>
+    </div>  
+  </div>
+  <a href="#portfolio" onclick="hide('popup_01')">Close</a>
+</div>
+<div class="popup_02" id="popup_02">
+  <div class="row">
+    <div class="about-col-1">
+        <img src="img/WATW.PNG">
+    </div>
+    <div class="about-col-2">
+      <h1 class="sub-title">War Among The Whales</h1>
+      <p>A video game is made with Unreal Engine, using models made from Blender.
+      </p>
+    </div>  
+  </div>
+  <a href="#portfolio" onclick="hide('popup_02')">Close</a>
+</div>
+
+<!-----------------------------JAVASCRIPT------------------------------------------------------->
+<script src="Java Script.js"></script>
+<!-------------------------------TabLinks--------------------------------------------------------------->
+<script>
+
+  var tablinks = document.getElementsByClassName("tab-links");
+  var tabcontents = document.getElementsByClassName("tab-contents");
+
+  function opentab(tabname){
+  for(tablink of tablinks){
+    tablink.classList.remove("active-link");
+  }
+  for(tabcontent of tabcontents){
+    tabcontent.classList.remove("active-tab");
+  }
+  event.currentTarget.classList.add("active-link")
+  document.getElementById(tabname).classList.add("active-tab");
+  }
+
+</script>
+
+
+
+</body>
+</html>
