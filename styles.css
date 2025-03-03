@@ -499,318 +499,78 @@ html {
     margin-top: 60px;
   }
   
-  /*----------------------------------------PORTFOLIO SEPARATED PAGE-------------------------------------------------------------*/    
-  #top-line{
-    width: 100%;
-    text-align: center;
-    padding: 25px 0;
-  }
-  .work-description {
-   margin-top: 20px;
-   font-weight: 300;
-   color:#ffffff;
-  }
-  
-  
-  
-  /*------------------------------------------------------Popups---------------------------------------------------------------*/
-  
-  /* first popup */
-   .popup, .popup_01, .popup_02, .popup_03, .popup_04, .popup_05{                                
-    display: none;
-    position: fixed;
-    text-align: center;
-    padding: 10px;
-    width: 1500px;
-    height: 800px;
-    left: 50%;
-    top: 50%;
-    margin-top: -400px;
-    margin-left: -750px;
-    background: #fff;
-    border: 3px solid #fff;
-    border-radius: 6px;
-  }
-  .popup.active, 
-  .popup_01.active, 
-  .popup_02.active, 
-  .popup_03.active, 
-  .popup_04.active, 
-  .popup_05.active {
-    position: fixed;
-    left: 47%;
-    bottom: 13%;
-    text-decoration: none;
-    border: 3px solid #fff;
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 6px;
-    padding: 14px 50px; 
-    color: #fff;
-    font-size: 15px;
-  }
-  .popup a:hover{
-    border: 3px solid #ff93bb;
-    background-color: #ff93bb;
-    transition: all 0.3s ease 0s;
-  }
-  
-  #popup:after {
-    position: fixed;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.804);
-    z-index: -1;
-  }
-  /* second popup */
-  .popup_01{                                
-    display: none;
-    position: fixed;
-    text-align: center;
-    padding: 10px;
-    width: 1500px;
-    height: 800px;
-    left: 50%;
-    top: 50%;
-    margin-top: -400px;
-    margin-left: -750px;
-    background: #fff;
-    border: 3px solid #fff;
-    border-radius: 6px;
-  }
-  
-  .popup_01 a{
-    position: fixed;
-    left: 47%;
-    bottom: 13%;
-    text-decoration: none;
-    border: 3px solid #fff;
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 6px;
-    padding: 14px 50px; 
-    color: #fff;
-    font-size: 15px;
-  }
-  .popup_01 a:hover{
-    border: 3px solid #ff93bb;
-    background-color: #ff93bb;
-    transition: all 0.3s ease 0s;
-  }
-  
-  #popup_01:after {
-    position: fixed;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.804);
-    z-index: -1;
-  }
-  /* third popup*/
-  .popup_02{                                
-    display: none;
-    position: fixed;
-    text-align: center;
-    padding: 10px;
-    width: 1500px;
-    height: 800px;
-    left: 50%;
-    top: 50%;
-    margin-top: -400px;
-    margin-left: -750px;
-    background: #fff;
-    border: 3px solid #fff;
-    border-radius: 6px;
-  }
-  .popup_02 a{
-    position: fixed;
-    left: 47%;
-    bottom: 13%;
-    text-decoration: none;
-    border: 3px solid #fff;
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 6px;
-    padding: 14px 50px; 
-    color: #fff;
-    font-size: 15px;
-  }
-  .popup_02 a:hover{
-    border: 3px solid #ff93bb;
-    background-color: #ff93bb;
-    transition: all 0.3s ease 0s;
-  }
-  
-  #popup_02:after {
-    position: fixed;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.804);
-    z-index: -1;
-  }
-  /*fourth popup*/
-  .popup_03{                                
-    display: none;
-    position: fixed;
-    text-align: center;
-    padding: 10px;
-    width: 1500px;
-    height: 800px;
-    left: 50%;
-    top: 50%;
-    margin-top: -400px;
-    margin-left: -750px;
-    background: #fff;
-    border: 3px solid #fff;
-    border-radius: 6px;
-  }
-  .popup_03 a{
-    position: fixed;
-    left: 47%;
-    bottom: 13%;
-    text-decoration: none;
-    border: 3px solid #fff;
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 6px;
-    padding: 14px 50px; 
-    color: #fff;
-    font-size: 15px;
-  }
-  .popup_03 a:hover{
-    border: 3px solid #ff93bb;
-    background-color: #ff93bb;
-    transition: all 0.3s ease 0s;
-  }
-  
-  #popup_03:after {
-    position: fixed;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.804);
-    z-index: -1;
-  }
-  /* fifth popup */
-  .popup_04{                                
-    display: none;
-    position: fixed;
-    text-align: center;
-    padding: 10px;
-    width: 1500px;
-    height: 800px;
-    left: 50%;
-    top: 50%;
-    margin-top: -400px;
-    margin-left: -750px;
-    background: #fff;
-    border: 3px solid #fff;
-    border-radius: 6px;
-  }
-  .popup_04 a{
-    position: fixed;
-    left: 47%;
-    bottom: 13%;
-    text-decoration: none;
-    border: 3px solid #fff;
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 6px;
-    padding: 14px 50px; 
-    color: #fff;
-    font-size: 15px;
-  }
-  .popup_04 a:hover{
-    border: 3px solid #CCA3A6;
-    background-color: #CCA3A6;
-    transition: all 0.3s ease 0s;
-  }
-  
-  #popup_04:after {
-    position: fixed;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.804);
-    z-index: -1;
-  }
-  /*sixth popup*/
-  .popup_05{                                
-    display: none;
-    position: fixed;
-    text-align: center;
-    padding: 10px;
-    width: 1500px;
-    height: 800px;
-    left: 50%;
-    top: 50%;
-    margin-top: -400px;
-    margin-left: -750px;
-    background: #fff;
-    border: 3px solid #fff;
-    border-radius: 6px;
-  }
-  .popup_05 a{
-    position: fixed;
-    left: 47%;
-    bottom: 13%;
-    text-decoration: none;
-    border: 3px solid #fff;
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 6px;
-    padding: 14px 50px; 
-    color: #fff;
-    font-size: 15px;
-  }
-  .popup_05 a:hover{
-    border: 3px solid #CCA3A6;
-    background-color: #CCA3A6;
-    transition: all 0.3s ease 0s;
-  }
-  
-  #popup_05:after {
-    position: fixed;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.804);
-    z-index: -1;
-  }
-  
-  
-  /* Styling buttons & webpage */
-  
-  button {
-      margin-top: 10px;
-      background-color: rgba(255,255,255,0.3);
-      border: 3px solid #fff;
-      color:#FFF;
-      font-size: 15px;
-      padding: 14px 50px;
-      border-radius: 6px;
-      cursor: pointer;
-      
-  }
-  
-  button:hover, .btn2:hover {
-    background-color: #ff93bb;
-    border: 3px solid #ff93bb;
-    transition: all 0.3s ease 0s;
-}
-  
   p {
       margin: 1em 0;
     font-size: 16px;
   }
+
+
+  /* Modal Background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  overflow: auto;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 50%;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  animation: slideDown 0.3s ease-in-out;
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 25px;
+  cursor: pointer;
+  color: #ff93bb;
+}
+
+.close:hover {
+  color: #ff0055;
+}
+
+/* Modal Image */
+.modal-content img {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Video Styling inside the Modal */
+.modal-content video {
+  margin-top: 10px; /* Add some space */
+  border-radius: 5px;
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
   
   @media (max-width: 768px) {
     .nav-links {

@@ -90,19 +90,19 @@
     <h1 class="sub-title">Portfolio</h1>
     <div class="work-list">
       <div class="work">
-        <img src="img/Orc.png" alt="3D Model of an Orc">
+        <img src="img/Orc.png" alt="3D Model of an Orc" >
         <div class="layer">
           <h3>The orc</h3>
           <p>A fantasy creature.</p>
-          <button class="button" href="#" onclick="show('popup')">View</button>
+          <button class="button" href="#" onclick="openModal('modalOrc')">View</button>
         </div>
       </div>
       <div class="work">
-        <img src="img/Robot.png" alt="3D Model of a Futuristic Robot">
+        <img src="img/Robot.png" alt="3D Model of a Futuristic Robot"  >
         <div class="layer">
           <h3>A futuristic machine</h3>
           <p>A fantasy game made with Unreal Engine.</p>
-          <button class="button" href="#" onclick="show('popup_01')">View</button>
+          <button class="button" href="#" onclick="openModal('modalRobot')">View</button>
         </div>
       </div>
       <div class="work">
@@ -110,7 +110,7 @@
         <div class="layer">
           <h3>War Among The Whales</h3>
           <p> A video game with the help of Unreal Engine.</p>
-          <button class="button" href="#" onclick="show('popup_02')">View</button>
+          <button class="button" href="#" onclick="openModal('modalWATW')">View</button>
         </div>
       </div>
     </div>
@@ -177,49 +177,6 @@
 </div>
 
 
-<!----------------------------------popups_mywork------------------------------------------------>
-<div class="popupempty" id="popupempty">
-</div>
-<div class="popup" id="popup">
-  <div class="row">
-    <div class="about-col-1">
-        <img src="img/Orc.png">
-    </div>
-    <div class="about-col-2">
-      <h1 class="sub-title">The Orc</h1>
-      <p> A model of orc is made with the help of ZBrush, Autodesk Maya and Substance Painter.
-      </p>
-    </div>  
-  </div>
-  <a href="#portfolio" onclick="hide('popup')">Close</a>
-</div>
-<div class="popup_01" id="popup_01">
-  <div class="row">
-    <div class="about-col-1">
-        <img src="img/Robot.png">
-    </div>
-    <div class="about-col-2">
-      <h1 class="sub-title">A futuristic machine</h1>
-      <p> A model of robot is made with the help of Autodesk Maya and Substance Painter.
-      </p>
-    </div>  
-  </div>
-  <a href="#portfolio" onclick="hide('popup_01')">Close</a>
-</div>
-<div class="popup_02" id="popup_02">
-  <div class="row">
-    <div class="about-col-1">
-        <img src="img/WATW.PNG">
-    </div>
-    <div class="about-col-2">
-      <h1 class="sub-title">War Among The Whales</h1>
-      <p>A video game is made with Unreal Engine, using models made from Blender.
-      </p>
-    </div>  
-  </div>
-  <a href="#portfolio" onclick="hide('popup_02')">Close</a>
-</div>
-
 <!-----------------------------JAVASCRIPT------------------------------------------------------->
 <script src="Java Script.js"></script>
 <!-------------------------------TabLinks--------------------------------------------------------------->
@@ -240,6 +197,48 @@
   }
 
 </script>
+
+<!-- Modal Structure for Orc -->
+<div id="modalOrc" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modalOrc')">&times;</span>
+    <img src="img/Orc.png" alt="3D Model of an Orc">
+    <h2>The Orc</h2>
+    <p>A fantasy creature.</p>
+    <video width="100%" controls>
+      <source src="vid/Orc_01.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<!-- Modal Structure for Robot -->
+<div id="modalRobot" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modalRobot')">&times;</span>
+    <img src="img/Robot.png" alt="3D Model of a Futuristic Robot">
+    <h2>A Futuristic Machine</h2>
+    <p>A fantasy game made with Unreal Engine.</p>
+    <video width="100%" controls>
+      <source src="videos/robot-animation.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<!-- Modal Structure for War Among The Whales -->
+<div id="modalWATW" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modalWATW')">&times;</span>
+    <img src="img/WATW.PNG" alt="War Among The Whales Video Game">
+    <h2>War Among The Whales</h2>
+    <p>A video game developed with Unreal Engine.</p>
+    <video width="100%" controls>
+      <source src="videos/watw-trailer.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
 
 
 
