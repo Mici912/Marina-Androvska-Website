@@ -34,6 +34,8 @@
         .work-list {
             display: flex;
             justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
             gap: 20px;
             margin-top: 30px;
             position: relative;
@@ -44,6 +46,11 @@
             border-radius: 15px;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s;
             position: relative;
+            width: 30%; /* Ensure all items take up equal width */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .work:hover {
             transform: scale(1.05);
@@ -51,6 +58,7 @@
         }
         .work img {
             width: 100%;
+            height: auto;
             border-radius: 10px;
             transition: transform 0.3s;
         }
@@ -93,11 +101,6 @@
         .arrow-right {
             right: -60px;
         }
-        .work:nth-child(3) .arrow-right, .work:nth-child(3) .arrow-left {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
         .arrow-left {
             left: -60px;
             display: none;
@@ -105,6 +108,70 @@
         .arrow:hover {
             color: #ff77aa;
         }
+
+        
+        /* Modal background */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Modal content */
+        .modal-content {
+            background: #292929;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Show modal with fade-in */
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Scale up effect for content */
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Image & Video in Modal */
+        .modal-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .modal-content video {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -116,61 +183,171 @@
         <div class="gallery-container">
             <h2 class="sub-title">3D Art</h2>
             <div class="work-list" id="workList3D">
-                <div class="work">
-                    <img src="img/Orc.png" alt="Orc Model">
-                    <div class="layer">
-                        <h3>The Orc</h3>
-                        <p>A fantasy creature modeled in ZBrush & Maya.</p>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="img/Robot.png" alt="Robot Model">
-                    <div class="layer">
-                        <h3>Futuristic Machine</h3>
-                        <p>A sci-fi robot designed with Unreal Engine.</p>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="img/WATW.PNG" alt="Game Scene">
-                    <div class="layer">
-                        <h3>War Among The Whales</h3>
-                        <p>Game environment built with Unreal Engine.</p>
-                    </div>
-                    <span class="arrow arrow-right" id="rightArrow3D" onclick="switchGallery(1, '3D')">&#10095;</span>
-                </div>
+                <span class="arrow arrow-left" id="leftArrow3D" onclick="switchGallery(-1)">&#10094;</span>
+                <div id="gallery3D"></div>
+                <span class="arrow arrow-right" id="rightArrow3D" onclick="switchGallery(1)">&#10095;</span>
             </div>
+        </div> 
+
+        <!-- Second Gallery: Graphic Design -->
+        <div class="gallery-container">
+          <h2 class="sub-title">Graphic Design</h2>
+          <div class="work-list" id="workListGD">
+              <span class="arrow arrow-left" id="leftArrowGD" onclick="switchGalleryGD(-1)">&#10094;</span>
+              <div id="galleryGD"></div>
+              <span class="arrow arrow-right" id="rightArrowGD" onclick="switchGalleryGD(1)">&#10095;</span>
+          </div>
         </div>
 
-        <!-- Second Gallery -->
-        <div class="gallery-container">
-            <h2 class="sub-title">Design</h2>
-            <div class="work-list" id="workListDesign">
-                <div class="work">
-                    <img src="img/Poster1.png" alt="Event Poster">
-                    <div class="layer">
-                        <h3>Event Poster</h3>
-                        <p>A modern event poster design.</p>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="img/LogoDesign.png" alt="Brand Logo">
-                    <div class="layer">
-                        <h3>Brand Logo</h3>
-                        <p>A creative logo for a company.</p>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="img/UIUX.png" alt="UI/UX Design">
-                    <div class="layer">
-                        <h3>UI/UX Design</h3>
-                        <p>A sleek UI/UX design for a web app.</p>
-                    </div>
-                    <span class="arrow arrow-right" id="rightArrowDesign" onclick="switchGallery(1, 'Design')">&#10095;</span>
-                </div>
-            </div>
-        </div>
+
+        
         
         <a href="index.html" class="btn">Back to Main Page</a>
     </div>
+
+    <script>
+            // 3D Art Gallery
+      let currentGallery = 0;
+      const galleries3D = [
+          [
+              { img: "img/Orc.png", title: "The Orc", desc: "A fantasy creature modeled in ZBrush & Maya.", video: "vid/Orc_01.mp4" },
+              { img: "img/Robot.png", title: "Futuristic Machine", desc: "A sci-fi robot designed with Unreal Engine.", video: "" },
+              { img: "img/WATW.PNG", title: "War Among The Whales", desc: "Game environment built with Unreal Engine.", video: "videos/whale.mp4" }
+          ],
+          [
+              { img: "img/House_03.png", title: "House Island", desc: "A 3D house environment built in Blender.", video: "" },
+              { img: "img/FrenchDistrict_03.png", title: "City of Light", desc: "A detailed 3D cityscape created in Unreal Engine.", video: "videos/city.mp4" },
+              { img: "img/Viking_01.png", title: "Viking Warrioress", desc: "A warrior character sculpted in ZBrush.", video: "" }
+          ]
+      ];
+
+      function switchGallery(direction) {
+          currentGallery = (currentGallery + direction + galleries3D.length) % galleries3D.length;
+          renderGallery();
+      }
+
+      function renderGallery() {
+          const workList = document.getElementById("gallery3D");
+          workList.innerHTML = '';
+          workList.style.display = "flex";
+          workList.style.justifyContent = "center";
+          workList.style.gap = "20px";
+          
+          galleries3D[currentGallery].forEach(work => {
+              workList.innerHTML += `
+                  <div class="work" onclick="openModal('${work.img}', '${work.title}', '${work.desc}', '${work.video}')">
+                      <img src="${work.img}" alt="${work.title}">
+                      <div class="layer">
+                          <h3>${work.title}</h3>
+                          <p>${work.desc}</p>
+                      </div>
+                  </div>
+              `;
+          });
+
+          document.getElementById("leftArrow3D").style.display = currentGallery === 0 ? "none" : "block";
+          document.getElementById("rightArrow3D").style.display = currentGallery === galleries3D.length - 1 ? "none" : "block";
+      }
+
+      // Initialize 3D Gallery
+      renderGallery();
+
+      // Graphic Design Gallery
+      let currentGalleryGD = 0;
+      const galleriesGD = [
+          [
+              { img: "img/Poster_01.png", title: "Concert Poster", desc: "A vibrant concert poster design.", video: "" },
+              { img: "img/Logo_01.png", title: "Modern Logo", desc: "A sleek and minimalist logo.", video: "" },
+              { img: "img/BusinessCard_01.png", title: "Business Card", desc: "A clean and professional business card design.", video: "videos/businesscard.mp4" }
+          ],
+          [
+              { img: "img/Flyer_01.png", title: "Event Flyer", desc: "A stylish promotional flyer.", video: "" },
+              { img: "img/Magazine_01.png", title: "Magazine Layout", desc: "An elegant magazine spread design.", video: "" },
+              { img: "img/WebBanner_01.png", title: "Web Banner", desc: "A digital ad banner for social media.", video: "" }
+          ]
+      ];
+
+      function switchGalleryGD(direction) {
+          currentGalleryGD = (currentGalleryGD + direction + galleriesGD.length) % galleriesGD.length;
+          renderGalleryGD();
+      }
+
+      function renderGalleryGD() {
+          const workList = document.getElementById("galleryGD");
+          workList.innerHTML = '';
+          workList.style.display = "flex";
+          workList.style.justifyContent = "center";
+          workList.style.gap = "20px";
+          
+          galleriesGD[currentGalleryGD].forEach(work => {
+              workList.innerHTML += `
+                  <div class="work" onclick="openModal('${work.img}', '${work.title}', '${work.desc}', '${work.video}')">
+                      <img src="${work.img}" alt="${work.title}">
+                      <div class="layer">
+                          <h3>${work.title}</h3>
+                          <p>${work.desc}</p>
+                      </div>
+                  </div>
+              `;
+          });
+
+          document.getElementById("leftArrowGD").style.display = currentGalleryGD === 0 ? "none" : "block";
+          document.getElementById("rightArrowGD").style.display = currentGalleryGD === galleriesGD.length - 1 ? "none" : "block";
+      }
+
+      // Initialize Graphic Design Gallery
+      renderGalleryGD();
+
+      // Modal Functionality
+      function openModal(img, title, desc, video) {
+        const modal = document.getElementById("modal");
+        document.getElementById("modalImg").src = img;
+        document.getElementById("modalDesc").textContent = desc;
+          
+        const videoElement = document.getElementById("modalVideo");
+        const videoSrc = document.getElementById("videoSrc");
+          
+        if (video) {
+          videoElement.style.display = "block";
+          videoSrc.src = video;
+          videoElement.load(); // Reload the video source
+        } else {
+          videoElement.style.display = "none";
+        }
+
+        modal.style.display = "flex";
+
+      // Add 'show' class to trigger the animation
+    setTimeout(() => {
+        modal.classList.add("show");
+    }, 10); // Small delay to allow transition effect
+}
+function closeModal() {
+    const modal = document.getElementById("modal");
+    modal.classList.remove("show");
+
+    // Wait for the transition to complete before hiding
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 300); // Matches the CSS transition duration
+}
+      
+
+  </script>
+
+    <!-- Modal Popup -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImg" src="" alt="">
+        <video id="modalVideo" controls style="display: none;">
+            <source id="videoSrc" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p id="modalDesc"></p>
+    </div>
+  </div>
+
+  
 </body>
 </html>
