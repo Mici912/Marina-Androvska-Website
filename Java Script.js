@@ -1,38 +1,59 @@
 // Toggle Menu Functionality
 const toggleMenu = () => {
-    document.querySelector('.nav-links').classList.toggle('active');
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
 };
 
 
+// Ensure menu closes when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener("click", () => {
+        document.querySelector('.nav-links').classList.remove("active");
+    });
+});
 
-// Tab Switching Functionality
+// Tab Switching Functionality with Smooth Transition
 const tablinks = document.querySelectorAll(".tab-links");
 const tabcontents = document.querySelectorAll(".tab-contents");
 
-function opentab(event, tabname){
-    for(let tablink of tablinks){
-        tablink.classList.remove("active-link");
-    }
-    for(let tabcontent of tabcontents){
-        tabcontent.classList.remove("active-tab");
-    }
+function opentab(event, tabname) {
+    tablinks.forEach(tab => tab.classList.remove("active-link"));
+    tabcontents.forEach(tab => {
+        tab.classList.remove("active-tab");
+        tab.style.opacity = 0;  // Set opacity to 0 before transition
+    });
+
     event.currentTarget.classList.add("active-link");
-    document.getElementById(tabname).classList.add("active-tab");
+    const activeTab = document.getElementById(tabname);
+    activeTab.classList.add("active-tab");
+
+ setTimeout(() => {
+        activeTab.style.opacity = 1;  // Fade in after active-tab is added
+    }, 100); 
 }
 
-// Popup Functionality
+
+
+
+
+// Popup Functionality with Smooth Fade In/Out
 const show = (id) => {
-    document.getElementById(id).style.display = 'block';
+    const popup = document.getElementById(id);
+    popup.style.display = 'block';
+    setTimeout(() => popup.style.opacity = 1, 10);
 };
 
 const hide = (id) => {
-    document.getElementById(id).style.display = 'none';
+    const popup = document.getElementById(id);
+    popup.style.opacity = 0;
+    setTimeout(() => popup.style.display = 'none', 300);
 };
+
 
 // Form Validation
 const form = document.querySelector("form");
 if (form) {
-    form.addEventListener("submit", function(e) {
+    form.addEventListener("submit", function (e) {
         let email = document.querySelector("input[type='email']").value;
         if (!email.includes("@")) {
             alert("Please enter a valid email.");
@@ -40,7 +61,9 @@ if (form) {
         }
     });
 }
-// Fireflies 
+
+
+// Fireflies Animation
 document.addEventListener('DOMContentLoaded', () => {
     const firefliesContainer = document.querySelector('.fireflies');
 

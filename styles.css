@@ -1,10 +1,10 @@
 html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     overflow-x: hidden;            /* Prevent horizontal scroll */
-    font-family: Soleil, sans-serif;
+    font-family: 'Trebuchet MS', sans-serif;
     background: #C3BEBD;
     margin: 0;
     padding: 0;
@@ -166,7 +166,7 @@ html {
     animation: glow 5s infinite;
     box-shadow: 0 0 10px #fffb87;
   }
-  
+  /* Firefly animation with smoother movement */
   @keyframes glow {
     0%, 100% {
         transform: translateY(0) scale(0.5);
@@ -181,7 +181,7 @@ html {
   /*------------ABOUT ME------------*/
   
   .container_01 {
-    width: 90%;
+    max-width: 1300px;
     border-radius: 30px;
     background-color: rgb(0, 0, 0);
     padding: 80px 0;
@@ -255,24 +255,26 @@ html {
   
   .tab-contents{
     display:none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
   
   }
   
   .tab-contents.active-tab{
     display: block;
+    opacity: 1;
   }
   
   
   
-  /*-----------------------------------services---------------------------------------------------------------*/
+  /*-----------------------------------CONNETION---------------------------------------------------------------*/
   #services{
     padding: 30px 0;
   }
   .container_03 {
-    background-color: #000000;
-    width: 90%;
+    max-width: 1300px;
     border-radius: 30px;
-    background-color: rgb(0, 0, 0);
+    background-color: 
     padding: 80px 0;
     margin-left: auto;
     margin-right: auto;
@@ -315,11 +317,11 @@ html {
   /*-----------------portfolio---------------------*/
   
   #portfolio{
-    padding:50px 0;
+    padding: 100px 0;
   }
   .container_02 {
     background-color: #000000;
-    width: 90%;
+    max-width: 1300px;
     border-radius: 30px;
     background-color: rgb(0, 0, 0);
     padding: 80px 0;
@@ -391,7 +393,7 @@ html {
   
   /*-----------------------------------contact------------------------------------*/
   .container_04 {
-    width: 80%;
+    max-width: 1300px;
     border-radius: 30px;
     background-color: rgb(0, 0, 0);
     margin-left: auto;
