@@ -267,14 +267,14 @@ html {
   
   
   
-  /*-----------------------------------CONNETION---------------------------------------------------------------*/
+  /*-----------------------------------CONNECTION---------------------------------------------------------------*/
   #services{
     padding: 30px 0;
   }
   .container_03 {
     max-width: 1300px;
     border-radius: 30px;
-    background-color: 
+    background-color; 
     padding: 80px 0;
     margin-left: auto;
     margin-right: auto;
@@ -320,7 +320,6 @@ html {
     padding: 100px 0;
   }
   .container_02 {
-    background-color: #000000;
     max-width: 1300px;
     border-radius: 30px;
     background-color: rgb(0, 0, 0);
@@ -328,67 +327,82 @@ html {
     margin-left: auto;
     margin-right: auto;
   }
-  .work-list{
-    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    grid-gap: 40px;
-    margin-top: 50px;
-  }
-  .work{
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-  }
-  .work img{
-    width: 100%;
-    border-radius: 10px;
-    display: block;
-    transition: transform 0.5s;
-  }
-  .layer{
-    width: 100%;
-    height: 0;
-    background: linear-gradient(rgba(255, 255, 255, 0), #ff93bb);
-    border-radius: 10px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding:0 40px;
-    text-align: center;
-    font-size: 14px;
-    transition: height 0.5s;
-    cursor: pointer;
-  }
-  .layer h3{
-    font-weight: 600;
-    font-size: 30px;
-    margin-bottom: 20px;
-  }
-  .work:hover img{
-    transform: scale(1.5)
-  }
-  .work:hover .layer{
-    height: 100%;
-  }
-  .btn{
-    display: block;
-    margin: 50px auto;
-    width:fit-content;
-    border: 3px solid #ff93bb;
-    padding: 14px 50px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #fff;
-    transition:background 0.5s;
-  }
-  .btn:hover{
-    background:#ff93bb;
-  }
+ /* Work Grid */
+.work-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 40px;
+  margin-top: 50px;
+}
+ 
+/* Individual Work Items */
+.work {
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease-in-out;
+}
+/* Work Images */
+.work img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.5s ease-in-out;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Layer (Overlay) */
+.layer {
+  width: 100%;
+  height: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(255, 147, 187, 0.85)); /* Softer gradient */
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content */
+  justify-content: center;
+  padding: 20px; /* More padding for breathing space */
+  text-align: center;
+  font-size: 16px;
+  opacity: 0;
+  transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+/* Title Styling */
+.layer h3 {
+  font-size: 24px; /* Larger title */
+  font-weight: bold;
+  margin-bottom: 10px; /* Add spacing */
+}
+
+/* Hover Effects */
+.work:hover img {
+  transform: scale(1.1); /* Slightly smaller zoom effect */
+}
+.work:hover .layer {
+  height: 100%;
+  opacity: 1;
+}
+/* Button Styling */
+.btn {
+  display: block;
+  margin: 50px auto;
+  width: fit-content;
+  border: 3px solid #ff93bb;
+  padding: 14px 50px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  transition: background 0.5s ease-in-out;
+}
+
+.btn:hover {
+  background: #ff93bb;
+}
   
   
   /*-----------------------------------contact------------------------------------*/
