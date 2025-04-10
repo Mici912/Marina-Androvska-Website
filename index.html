@@ -15,20 +15,21 @@
 </head>
 <body>
   <header>
-    <nav>
+    <nav aria-label="Main navigation">
         <img src="img/Logo.png" alt="Marina Androvska Logo" class="logo" loading="lazy">
         <ul class="nav-links">
-            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#home" class="active" onclick="scrollToTop(event)">Home</a></li>
             <li><a href="#about">About Me</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#connection">Connection</a></li>
             <li><a href="#contact">Contact Me</a></li>
         </ul>
         <span class="menu-toggle" onclick="toggleMenu()" aria-expanded="false" aria-controls="nav-links">☰</span>
+        
     </nav>
   </header>
  <!-----------------------------------------------------------------------------------Hero Section------------------------------------------------------------------------------------------------------------------------->
-  <section class="hero">
+  <section class="hero fly-section" id="home">
     <div class="fireflies"></div> <!-- Fireflies go here -->
     <div class="intro-container">
         <div class="intro">
@@ -177,9 +178,9 @@
       </div>
     </div>
   </div>
-  <div class="copyright">
-    <p>Copyright © Marina Androvska. 2024-2025</p>
-  </div>
+</div>
+<div class="copyright">
+  <p>Copyright © Marina Androvska. 2024-2025</p>
 </div>
 
 
@@ -247,6 +248,7 @@
 
 <!--Custom Cursor-->
 <div class="custom-cursor"></div>
+
 
 </body>
 </html>

@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: none; /* Hides default cursor. Ensure custom cursor works reliably. */
+  cursor: none !important; /* Hides default cursor. Ensure custom cursor works reliably. */
 }
 
 html {
@@ -30,7 +30,7 @@ header {
   padding: 10px 20px;
   position: sticky; /* Make header sticky */
   top: 0;
-  z-index: 100; /* Ensure header is above hero scroll */
+  z-index: 99; /* Always on top of rest of the site */
   width: 100%;
 }
 
@@ -42,7 +42,7 @@ nav {
 }
 
 .logo {
-  width: 180px; /* Adjust as needed */
+  width: 120px; /* or even 120px */
   height: auto; /* Maintain aspect ratio */
   vertical-align: middle;
 }
@@ -88,25 +88,29 @@ nav {
 }
 
 /* Hero Section */
-.hero {
-  position: fixed; /* Keep fixed for parallax/fade */
-  top: 80;
+
+.hero.fly-section {
+  position: fixed;
+  top: 80px;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url('img/Asset 1.png') no-repeat center center; /* Ensure image path is correct */
+
+  background: url('img/Asset 1.png') no-repeat center center;
+  background-size: contain; /* or 80% auto if you want smaller */
   background-repeat: no-repeat;
-  background-size: cover;
-  /* background-attachment: fixed; */ /* Fixed attachment can interfere with some parallax effects */
+
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  z-index: 1; /* Below header, above spacer */
-  overflow: hidden; /* Prevent content spill */
+
+  z-index: 100; /* Highest: Stays above header */
+  overflow: hidden;
 }
 
-.hero .intro-container {
+
+.hero.fly-section.intro-container {
   opacity: 0; /* Start hidden for JS fade-in */
   animation: fadeInHero 1s ease-out 0.1s forwards; /* JS might handle this too */
   position: relative; /* Needed for absolute positioning of hover-info */
@@ -207,7 +211,7 @@ nav {
 /* General Content Sections */
 .fly-section {
   position: relative; /* Needed for z-index stacking */
-  z-index: 2; /* Above fixed hero after scroll */
+  z-index: 1; /* Lower than header */
   padding-top: 80px; /* Consistent padding */
   padding-bottom: 80px;
   background: #C3BEBD; /* Ensure sections have background */
@@ -665,38 +669,41 @@ form .btn.btn2 { /* Submit button specific */
 
 /* Modal Styles */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
-  z-index: 1000; /* High z-index */
+  z-index: 1000;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
-  overflow-y: auto; /* Allow scroll if content overflows */
-  opacity: 0; /* Start transparent for fade-in */
-  transition: opacity 0.3s ease-in-out;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
+
 .modal-content {
-  background: #fff;
-  color: #333; /* Default text color for modal */
-  margin: 8% auto; /* More top margin, auto horizontal center */
-  padding: 30px; /* More padding */
-  width: 90%; /* Responsive width */
-  max-width: 700px; /* Max width */
-  border-radius: 10px;
+  background: #1f1f1f;
+  color: #fff;
+  margin: 8% auto;
+  padding: 30px;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 14px;
   text-align: center;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transform: translateY(-30px); /* Start slightly up for slide-down */
-  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 15px 35px rgba(255, 147, 187, 0.3);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.1s;
 }
-/* Add animation for modal appearance */
-.modal[style*="display: block"] { /* When modal becomes visible */
-    opacity: 1;
+
+.modal[style*="display: block"] {
+  opacity: 1;
 }
+
 .modal[style*="display: block"] .modal-content {
-    transform: translateY(0);
+  opacity: 1;
 }
 
 .close {
@@ -746,16 +753,27 @@ form .btn.btn2 { /* Submit button specific */
 /* Custom Cursor */
 .custom-cursor {
   position: fixed;
-  width: 20px; /* Slightly larger */
+  width: 20px;
   height: 20px;
   background-color: rgba(255, 147, 187, 0.7);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  /* Transform is set by JS */
-  mix-blend-mode: difference; /* Cool blend effect */
-  transition: transform 0.1s ease-out, background-color 0.3s ease, opacity 0.3s ease, width 0.3s ease, height 0.3s ease; /* Added size transition */
-   opacity: 1; /* Start visible */
+  mix-blend-mode: difference;
+  transition: 
+    transform 0.15s ease,
+    background-color 0.2s ease,
+    width 0.2s ease,
+    height 0.2s ease,
+    border 0.2s ease;
+}
+
+/* When hovering over interactive elements */
+.custom-cursor.ring {
+  background-color: transparent;
+  border: 3px solid rgba(255, 147, 187, 0.9);
+  width: 50px;
+  height: 50px;
 }
 
 /* Change cursor on hover over links/buttons */
@@ -829,3 +847,6 @@ button:hover ~ .custom-cursor,
     .connection-list div h2 { font-size: 1.4em; }
     .contact-left p i { font-size: 1.3em; margin-right: 10px; }
 }
+
+
+

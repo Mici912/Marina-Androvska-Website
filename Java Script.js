@@ -15,25 +15,33 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
 // Scroll-based nav highlight
 window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('[id].fly-section, section[id]');
+    const sections = document.querySelectorAll('.fly-section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
-  
+
     let current = '';
-  
+
     sections.forEach(section => {
-      const sectionTop = section.offsetTop - 150;
-      if (pageYOffset >= sectionTop) {
-        current = section.getAttribute('id');
-      }
+        const sectionTop = section.offsetTop - window.innerHeight / 2;
+        const sectionHeight = section.offsetHeight;
+
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+        }
     });
-  
+
     navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
     });
-  });
+});
+
+function scrollToTop(e) {
+    e.preventDefault(); // Prevent default anchor behavior
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
   
 
 
@@ -48,7 +56,10 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 const tablinks = document.querySelectorAll(".tab-links");
 const tabcontents = document.querySelectorAll(".tab-contents");
 
+
 function opentab(event, tabname) {
+
+    
     tablinks.forEach(tab => tab.classList.remove("active-link"));
     tabcontents.forEach(tab => {
         tab.classList.remove("active-tab");
@@ -135,18 +146,27 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 // Custom cursor movement
-    document.addEventListener('DOMContentLoaded', () => {
-        const cursor = document.querySelector('.custom-cursor');
-      
-        window.addEventListener('mousemove', (e) => {
-          cursor.style.top = `${e.clientY}px`;
-          cursor.style.left = `${e.clientX}px`;
-        });
-      
-        // Extra: Hide cursor if it leaves the viewport
-        document.addEventListener('mouseleave', () => cursor.style.display = 'none');
-        document.addEventListener('mouseenter', () => cursor.style.display = 'block');
-      });
+document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.querySelector('.custom-cursor');
+  
+    window.addEventListener('mousemove', (e) => {
+      cursor.style.top = `${e.clientY}px`;
+      cursor.style.left = `${e.clientX}px`;
+    });
+  
+    // Add hover ring effect for links and buttons
+    const hoverTargets = document.querySelectorAll('a, button, .tab-links');
+  
+    hoverTargets.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('ring'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('ring'));
+    });
+  
+    // Hide cursor when leaving viewport
+    document.addEventListener('mouseleave', () => cursor.style.display = 'none');
+    document.addEventListener('mouseenter', () => cursor.style.display = 'block');
+});
+  
 
 
 document.addEventListener('scroll', () => {
@@ -168,6 +188,7 @@ document.addEventListener('scroll', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.fade-section');
+    
   
     const observer = new IntersectionObserver(
       (entries) => {
@@ -208,10 +229,5 @@ document.addEventListener('DOMContentLoaded', () => {
       observer.observe(section);
     });
   });
-  
-  
-  
 
-      
-      
-      
+
