@@ -15,7 +15,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
 // Scroll-based nav highlight
 window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section, .fly-section');
+    const sections = document.querySelectorAll('[id].fly-section, section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
   
     let current = '';
