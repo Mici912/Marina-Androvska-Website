@@ -616,3 +616,14 @@ a:hover ~ .custom-cursor, button:hover ~ .custom-cursor {
   transform: translate(-50%, -50%) scale(2);
   background-color: rgba(255, 147, 187, 1); /* brighten on hover */
 }
+
+/* Fade-out/in sections */
+.fade-section {
+  opacity: 1;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.fade-section.hidden {
+  opacity: 0;
+  pointer-events: none; /* avoid interactions with hidden sections */
+}

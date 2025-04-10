@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Custom cursor movement
+// Custom cursor movement
     document.addEventListener('DOMContentLoaded', () => {
         const cursor = document.querySelector('.custom-cursor');
       
@@ -115,3 +115,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mouseleave', () => cursor.style.display = 'none');
         document.addEventListener('mouseenter', () => cursor.style.display = 'block');
       });
+
+      // Scroll-based fade-in/fade-out effect for sections
+document.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('.fade-section');
+    const windowHeight = window.innerHeight;
+
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+
+        if (sectionTop < -100 || sectionTop > windowHeight - 100) {
+            section.classList.add('hidden');
+        } else {
+            section.classList.remove('hidden');
+        }
+    });
+});
