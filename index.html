@@ -26,7 +26,7 @@
         <span class="menu-toggle" onclick="toggleMenu()" aria-expanded="false" aria-controls="nav-links">☰</span>
     </nav>
   </header>
-  
+ <!-----------------------------------------------------------------------------------Hero Section------------------------------------------------------------------------------------------------------------------------->
   <section class="hero">
     <div class="fireflies"></div> <!-- Fireflies go here -->
     <div class="intro-container">
@@ -37,8 +37,13 @@
         <p class="hover-info">Hover over for more</p>
     </div>
   </section>
+
+  <!-- Spacer to push content down from fixed hero -->
+  <div style="height: 100vh;"></div>
+
+  <div class="fade-out"></div>
 <!---------------------------------------------------------------------------------------ABOUT ME--------------------------------------------------------------------------------------------------------------->
-<div id="about" class="fade-section">
+<div id="about" class="fly-section fade-section">
   <div class="container_01">
     <div class="row">
       <div class="about-col-1">
@@ -85,7 +90,7 @@
 
 <!------------------------------------------portfolio---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-<div id="portfolio" class="fade-section">
+<div id="portfolio" class="fly-section fade-section">
   <div class="container_02">
     <h1 class="sub-title">Portfolio</h1>
     <div class="work-list">
@@ -119,7 +124,7 @@
 </div>
 
 <!------------------------------------------------------------------CONNECTION & SOCIAL MEDIA----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-<div id="services" class="fade-section">
+<div id="services" class="fly-section fade-section">
   <div class="container_03">
     <h1 class="sub-title">Connection</h1>
     <div class="services-list">
@@ -145,7 +150,7 @@
   </div>
 </div>
 <!----------------------------------contact----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-<div id="contact" class="fade-section">
+<div id="contact" class="fly-section">
   <div class="container_04">
     <div class="row">
       <div class="contact-left">
@@ -182,7 +187,6 @@
 <!-------------------------------TabLinks--------------------------------------------------------------->
 <script>
 
-  var tablinks = document.getElementsByClassName("tab-links");
   var tabcontents = document.getElementsByClassName("tab-contents");
 
   function opentab(tabname){

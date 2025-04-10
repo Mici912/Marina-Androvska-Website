@@ -116,18 +116,70 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mouseenter', () => cursor.style.display = 'block');
       });
 
-      // Scroll-based fade-in/fade-out effect for sections
+
 document.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('.fade-section');
-    const windowHeight = window.innerHeight;
-
-    sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-
-        if (sectionTop < -100 || sectionTop > windowHeight - 100) {
-            section.classList.add('hidden');
-        } else {
-            section.classList.remove('hidden');
-        }
-    });
+  requestAnimationFrame(() => {
+    const hero = document.querySelector('.hero');
+    const scrollPosition = window.scrollY;
+    const fadeEnd = window.innerHeight * 0.8;
+    let opacity = Math.max(1 - scrollPosition / fadeEnd, 0);
+    hero.style.opacity = opacity;
+  });
 });
+
+document.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero');
+    let offset = window.scrollY * 0.3; // Parallax factor
+    hero.style.backgroundPositionY = `${offset}px`;
+  });
+  
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.fade-section');
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('hidden');
+          } else {
+            entry.target.classList.add('hidden');
+          }
+        });
+      },
+      {
+        threshold: 0.3 // Trigger when 30% of the section is visible
+      }
+    );
+  
+    sections.forEach(section => {
+      observer.observe(section);
+      section.classList.add('hidden'); // Start hidden
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.fly-section');
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+  
+    sections.forEach(section => {
+      section.classList.add('fade-section'); // initial fade-in state
+      observer.observe(section);
+    });
+  });
+  
+  
+  
+
+      
+      
+      
