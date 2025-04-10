@@ -1,3 +1,6 @@
+* {
+  cursor: none !important; /* Completely hide the default cursor on all elements */
+}
 html {
     scroll-behavior: smooth;
   }
@@ -8,6 +11,7 @@ html {
     background: #C3BEBD;
     margin: 0;
     padding: 0;
+    cursor: none; /* Hide default cursor */
   }
   header {
     background: white;
@@ -593,4 +597,22 @@ html {
         font-size: 14px;
         padding: 12px;
     }
+}
+
+/* Custom Cursor*/
+.custom-cursor {
+  position: fixed;
+  width: 15px; /* adjust size */
+  height: 15px;
+  background-color: rgba(255, 147, 187, 0.7); /* pink color with opacity */
+  border-radius: 50%; /* circle shape */
+  pointer-events: none; /* avoid blocking interactions */
+  z-index: 10000; /* ensure cursor is above other elements */
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, background-color 0.3s ease;
+}
+
+a:hover ~ .custom-cursor, button:hover ~ .custom-cursor {
+  transform: translate(-50%, -50%) scale(2);
+  background-color: rgba(255, 147, 187, 1); /* brighten on hover */
 }

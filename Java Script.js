@@ -101,3 +101,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         });
     };
+
+    // Custom cursor movement
+    document.addEventListener('DOMContentLoaded', () => {
+        const cursor = document.querySelector('.custom-cursor');
+      
+        window.addEventListener('mousemove', (e) => {
+          cursor.style.top = `${e.clientY}px`;
+          cursor.style.left = `${e.clientX}px`;
+        });
+      
+        // Extra: Hide cursor if it leaves the viewport
+        document.addEventListener('mouseleave', () => cursor.style.display = 'none');
+        document.addEventListener('mouseenter', () => cursor.style.display = 'block');
+      });
