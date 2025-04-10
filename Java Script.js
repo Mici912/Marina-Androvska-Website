@@ -3,6 +3,13 @@ const toggleMenu = () => {
     const navLinks = document.querySelector('.nav-links');
     navLinks.classList.toggle('active');
 };
+// Highlight active nav link on click
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener("click", function () {
+        document.querySelectorAll('.nav-links a').forEach(nav => nav.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
 
 
 // Ensure menu closes when clicking a link

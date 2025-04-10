@@ -25,7 +25,6 @@ body {
 header {
   background: white;
   padding: 10px 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: sticky; /* Make header sticky */
   top: 0;
   z-index: 100; /* Ensure header is above hero scroll */
@@ -88,11 +87,12 @@ nav {
 /* Hero Section */
 .hero {
   position: fixed; /* Keep fixed for parallax/fade */
-  top: 0;
+  top: 80;
   left: 0;
   width: 100vw;
   height: 100vh;
   background: url('img/Asset 1.png') no-repeat center center; /* Ensure image path is correct */
+  background-repeat: no-repeat;
   background-size: cover;
   /* background-attachment: fixed; */ /* Fixed attachment can interfere with some parallax effects */
   display: flex;
