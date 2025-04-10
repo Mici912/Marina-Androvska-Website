@@ -12,6 +12,31 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 
+
+// Scroll-based nav highlight
+window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section, .fly-section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+  
+    let current = '';
+  
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 150;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+  
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+  
+
+
 // Ensure menu closes when clicking a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener("click", () => {
