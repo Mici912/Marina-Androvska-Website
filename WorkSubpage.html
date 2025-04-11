@@ -171,6 +171,39 @@
             margin-top: 10px;
         }
 
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 147, 187, 0.7);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition:
+                transform 0.15s ease,
+                background-color 0.2s ease,
+                width 0.2s ease,
+                height 0.2s ease,
+                border 0.2s ease;
+        }
+
+        .custom-cursor.ring {
+            background-color: transparent;
+            border: 3px solid rgba(255, 147, 187, 0.9);
+            width: 50px;
+            height: 50px;
+        }
+
+        a:hover ~ .custom-cursor,
+        button:hover ~ .custom-cursor,
+        .tab-links:hover ~ .custom-cursor {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 30px;
+            height: 30px;
+        }
+
 
     </style>
 </head>
@@ -331,6 +364,25 @@ function closeModal() {
         modal.style.display = "none";
     }, 300); // Matches the CSS transition duration
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.querySelector('.custom-cursor');
+
+    window.addEventListener('mousemove', (e) => {
+      cursor.style.top = `${e.clientY}px`;
+      cursor.style.left = `${e.clientX}px`;
+    });
+
+    const hoverTargets = document.querySelectorAll('a, button, .tab-links');
+
+    hoverTargets.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('ring'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('ring'));
+    });
+
+    document.addEventListener('mouseleave', () => cursor.style.display = 'none');
+    document.addEventListener('mouseenter', () => cursor.style.display = 'block');
+  });
       
 
   </script>
@@ -347,6 +399,9 @@ function closeModal() {
         <p id="modalDesc"></p>
     </div>
   </div>
+
+<!--Custom Cursor-->
+<div class="custom-cursor"></div>
 
   
 </body>

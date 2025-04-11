@@ -192,10 +192,44 @@ nav {
   position: absolute;
   background: radial-gradient(circle, #fffb87 20%, transparent 70%);
   border-radius: 50%;
-  opacity: 0;
-  animation: glow 5s infinite ease-in-out; /* Use ease-in-out */
-  box-shadow: 0 0 10px #fffb87, 0 0 15px #fffb87; /* Enhance glow */
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;
+  box-shadow: 0 0 10px #fffb87, 0 0 15px #fffb87;
+  animation: none !important; /* override old animation */
 }
+
+.firefly.fleeing {
+  box-shadow: 0 0 20px #fffbb1, 0 0 30px #fff176;
+  background: radial-gradient(circle, #fff176 40%, transparent 80%);
+  opacity: 1;
+}
+
+/* Particle trails */
+.firefly-trail {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff8b3;
+  box-shadow: 0 0 8px #fff176;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: trailFade 0.4s ease-out forwards;
+}
+
+@keyframes trailFade {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+}
+
 
 @keyframes glow {
   0%, 100% {
@@ -293,15 +327,17 @@ nav {
   flex-wrap: wrap; /* Allow wrapping on small screens */
   gap: 15px;
 }
-.tab-links{
-  margin-right: 25px; /* Reduced margin */
-  font-size: 1.2em; /* Larger tabs */
+.tab-links {
+  margin-right: 25px;
+  font-size: 1.2em;
   font-weight: 500;
-  color: #ccc; /* Default tab color */
+  color: #ccc;
   cursor: pointer;
   position: relative;
-  padding-bottom: 8px; /* Space for underline */
-  transition: color 0.3s ease;
+  padding-bottom: 8px;
+  transition: 
+    color 0.3s ease,
+    transform 0.2s ease; /* <- Add transform transition */
 }
 .tab-links::after{
   content:'';
@@ -311,9 +347,13 @@ nav {
   position:absolute;
   left: 0;
   bottom: 0; /* Position at the bottom */
-  transition: width 0.4s ease; /* Smooth transition */
+  transition: width 1s ease; /* Smooth transition */
 }
-.tab-links:hover { color: #fff; } /* Hover color */
+/* ENLARGE ON HOVER */
+.tab-links:hover {
+  color: #ffffff;
+  transform: scale(1.1); /* <- Slight enlarge */
+}
 
 .tab-links.active-link{ color: #ff93bb; } /* Active color */
 .tab-links.active-link::after{ width: 70%; } /* Underline width */
@@ -341,6 +381,8 @@ nav {
   display: block; /* Put span on its own line */
   margin-bottom: 5px;
 }
+
+
 
 /* Portfolio Section */
 #portfolio {
@@ -596,6 +638,7 @@ nav {
   border: 2px solid #ff93bb; /* Ensure border exists */
   cursor: pointer;
   font-weight: 500;
+  font-family: 'Roboto Serif', 'Trebuchet MS', sans-serif; /* <-- Add this line */
   transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 .btn.btn2:hover {
@@ -634,7 +677,12 @@ form textarea {
     resize: vertical; /* Allow vertical resize */
     min-height: 120px; /* Minimum height */
 }
-form ::placeholder { color: #bbb; opacity: 1; }
+form ::placeholder {
+  font-family: 'Roboto Serif', 'Trebuchet MS', sans-serif;
+  font-size: 1em;
+  color: #bbb; /* or match your design */
+  opacity: 1;  /* ensures full visibility */
+}
 
 form .btn.btn2 { /* Submit button specific */
     width: auto; /* Allow natural width */
@@ -646,6 +694,8 @@ form .btn.btn2 { /* Submit button specific */
     display: block;
     font-weight: 500;
 }
+
+
 
 
 /* Footer */

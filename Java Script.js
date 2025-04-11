@@ -105,45 +105,164 @@ if (form) {
     });
 }
 
-
-// Fireflies Animation
+// FIREFLIES
 document.addEventListener('DOMContentLoaded', () => {
     const firefliesContainer = document.querySelector('.fireflies');
+    const fireflies = [];
+    const numFireflies = 25;
+    const attractionRadius = 150;
+    const shakeThreshold = 40;
 
-    for (let i = 0; i < 25; i++) {
-        let firefly = document.createElement('div');
+    let mouse = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
+        prevX: window.innerWidth / 2,
+        prevY: window.innerHeight / 2,
+        speed: 0
+    };
+
+    window.addEventListener('mousemove', e => {
+        mouse.prevX = mouse.x;
+        mouse.prevY = mouse.y;
+
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+
+        const dx = mouse.x - mouse.prevX;
+        const dy = mouse.y - mouse.prevY;
+        mouse.speed = Math.sqrt(dx * dx + dy * dy);
+    });
+
+    for (let i = 0; i < numFireflies; i++) {
+        const firefly = document.createElement('div');
         firefly.className = 'firefly';
-        
-        // Random positions
-        firefly.style.left = Math.random() * 100 + 'vw';
-        firefly.style.top = Math.random() * 100 + 'vh';
-        
-        // Random size and animation delay
-        firefly.style.width = firefly.style.height = Math.random() * 5 + 5 + 'px';
-        firefly.style.animationDuration = Math.random() * 5 + 3 + 's';
-        firefly.style.animationDelay = Math.random() * 5 + 's';
-        
+
+        const size = Math.random() * 4 + 3;
+        firefly.style.width = `${size}px`;
+        firefly.style.height = `${size}px`;
+
+        const initialX = Math.random() * window.innerWidth;
+        const initialY = Math.random() * window.innerHeight;
+
         firefliesContainer.appendChild(firefly);
+
+        fireflies.push({
+            el: firefly,
+            x: initialX,
+            y: initialY,
+            vx: 0,
+            vy: 0,
+            orbiting: false,
+            orbitAngle: Math.random() * Math.PI * 2,
+            orbitSpeed: Math.random() * 0.02 + 0.01,
+            orbitRadius: Math.random() * 40 + 30,
+            wanderAngle: Math.random() * Math.PI * 2,
+            wanderSpeed: Math.random() * 0.5 + 0.5,
+            fleeing: false,
+            fleeTimer: 0
+        });
     }
+
+    function spawnTrail(x, y) {
+        const particle = document.createElement('div');
+        particle.className = 'firefly-trail';
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        firefliesContainer.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 400);
+    }
+
+    function animateFireflies() {
+        fireflies.forEach(f => {
+            const dx = mouse.x - f.x;
+            const dy = mouse.y - f.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Shake-to-flee
+            if (mouse.speed > shakeThreshold && distance < attractionRadius + 50 && !f.fleeing) {
+                f.fleeing = true;
+                f.fleeTimer = 30 + Math.random() * 30;
+
+                // Add flee glow
+                f.el.classList.add('fleeing');
+
+                const angle = Math.atan2(dy, dx) + Math.PI + (Math.random() - 0.5);
+                const speed = 6 + Math.random() * 3;
+                f.vx = Math.cos(angle) * speed;
+                f.vy = Math.sin(angle) * speed;
+            }
+
+            if (f.fleeing) {
+                f.fleeTimer--;
+                f.x += f.vx;
+                f.y += f.vy;
+                f.vx *= 0.95;
+                f.vy *= 0.95;
+
+                // Trail
+                spawnTrail(f.x, f.y);
+
+                if (f.fleeTimer <= 0) {
+                    f.fleeing = false;
+                    f.el.classList.remove('fleeing');
+                }
+            } else if (distance < attractionRadius) {
+                f.orbiting = true;
+                f.orbitAngle += f.orbitSpeed;
+                f.x = mouse.x + Math.cos(f.orbitAngle) * f.orbitRadius;
+                f.y = mouse.y + Math.sin(f.orbitAngle) * f.orbitRadius;
+            } else {
+                f.orbiting = false;
+                f.wanderAngle += (Math.random() - 0.5) * 0.3;
+                f.vx += Math.cos(f.wanderAngle) * f.wanderSpeed * 0.2;
+                f.vy += Math.sin(f.wanderAngle) * f.wanderSpeed * 0.2;
+                f.vx *= 0.92;
+                f.vy *= 0.92;
+                f.x += f.vx;
+                f.y += f.vy;
+            }
+
+            // Bounds
+            f.x = Math.max(0, Math.min(window.innerWidth, f.x));
+            f.y = Math.max(0, Math.min(window.innerHeight, f.y));
+
+            f.el.style.transform = `translate(${f.x}px, ${f.y}px)`;
+        });
+
+        requestAnimationFrame(animateFireflies);
+    }
+
+    animateFireflies();
 });
 
-    function openModal(modalId) {
-        document.getElementById(modalId).style.display = "block";
-    }
 
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = "none";
-    }
 
-    // Close the modal if clicked outside of content
-    window.onclick = function (event) {
-        const modals = document.querySelectorAll(".modal");
-        modals.forEach((modal) => {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-        });
-    };
+
+
+
+
+
+
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = "block";
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+}
+
+// Close the modal if clicked outside of content
+window.onclick = function (event) {
+    const modals = document.querySelectorAll(".modal");
+    modals.forEach((modal) => {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    });
+};
 
 // Custom cursor movement
 document.addEventListener('DOMContentLoaded', () => {
