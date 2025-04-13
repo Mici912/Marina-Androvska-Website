@@ -956,6 +956,27 @@ button:hover ~ .custom-cursor,
     margin-right: 10px;
   }
 
+  #about p {
+    text-align: justify;
+    hyphens: auto;
+    word-break: break-word;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-col-1, .about-col-2 {
+    width: 100%;
+    text-align: left;
+  }
+
+  .about-col-2 p {
+    padding: 0 10px;
+  }
+  
+
 }
 
 @media (max-width: 480px) {
