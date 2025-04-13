@@ -257,6 +257,71 @@
             width: 30px;
             height: 30px;
         }
+        /*   Media Design   */
+
+        @media (max-width: 768px) {
+        .work-list {
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .work {
+            width: 90%;
+            max-width: 100%;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .work img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .layer {
+            padding: 10px;
+        }
+
+        .layer h3 {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .layer p {
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .arrow {
+            display: none; /* Hide arrows on mobile */
+        }
+
+        .container {
+            padding: 40px 20px;
+        }
+
+        .sub-title {
+            font-size: 24px;
+        }
+
+        .btn {
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+        }
+        }
+
+
+
+        /* Hide cursor on phones and tablets*/
+        @media (hover:none) and (pointer: coarse) {
+        .custom-cursor {
+            display: none !important;
+        }
+        }
 
 
     </style>

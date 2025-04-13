@@ -1,8 +1,12 @@
 // Toggle Menu Functionality
 const toggleMenu = () => {
     const navLinks = document.querySelector('.nav-links');
+    const menuToggle = document.querySelector('.menu-toggle');
+  
     navLinks.classList.toggle('active');
-};
+    menuToggle.classList.toggle('active'); // animate ☰ to ✖
+  };
+  
 // Highlight active nav link on click
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener("click", function () {
@@ -49,8 +53,10 @@ function scrollToTop(e) {
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener("click", () => {
         document.querySelector('.nav-links').classList.remove("active");
+        document.querySelector('.menu-toggle').classList.remove("active"); // <--- ADD THIS
     });
 });
+
 
 // Tab Switching Functionality with Smooth Transition
 const tablinks = document.querySelectorAll(".tab-links");
@@ -349,4 +355,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-
+// MEDIA USAGE
+// Check if the screen width is greater than 768px before running the firefly animation
+if (window.innerWidth > 768) {
+    // Run firefly animation
+  }

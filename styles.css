@@ -79,13 +79,48 @@ nav {
 }
 
 .menu-toggle {
-  font-size: 28px; /* Larger tap target */
-  color: #CF6AA4; /* Match link color */
-  cursor: pointer;
-  display: none; /* Hidden by default */
-  margin-left: 15px; /* Space from links */
-  padding: 5px; /* Easier to tap */
+  width: 30px;
+  height: 22px;
+  display: none; /* Only shows on small screens in media queries */
+  position: absolute;  /* Position it relative to the nav or header */
+  top: 50%;             /* Center it vertically */
+  right: 20px;          /* Push it to the right */
+  transform: translateY(-50%); /* Perfect vertical centering */
+  z-index: 1001;
 }
+
+.menu-toggle span {
+  background-color: #CF6AA4;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+.menu-toggle span:nth-child(1) {
+  top: 0;
+}
+.menu-toggle span:nth-child(2) {
+  top: 9px;
+}
+.menu-toggle span:nth-child(3) {
+  top: 18px;
+}
+
+/* When active (change icon to X) */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 9px;
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 9px;
+}
+
 
 /* Hero Section */
 .hero.fly-section {
@@ -843,53 +878,73 @@ button:hover ~ .custom-cursor,
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .sub-title { font-size: 2.2em; } /* Adjust title size */
+  .hero.fly-section {
+    background-position: 50% center !important; /* Move image down */
+    background-size: 300%;           /* Optional: scale it up */
+    height: 100vh; /* ensure it still takes full screen height */
+    z-index: 1;
+  }
 
-  nav { padding: 0 15px; /* Reduce nav padding */ }
-  .logo { width: 150px; }
+  .hero .intro {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    color: #ffffff; /* You can adjust color if needed */
+    text-shadow: rgb(100, 41, 82) 0px 0px 5px; /* Optional: add text shadow for better readability */
+    font-size: 1.2em;
+    text-align: center;
+  }
 
-  .menu-toggle { display: block; } /* Show hamburger */
+  .menu-toggle {
+    display: block;
+  }
+
   .nav-links {
-      display: none; /* Hide links by default */
-      flex-direction: column;
-      position: absolute;
-      top: 100%; /* Position below header */
-      left: 0;
-      width: 100%;
-      background: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 10px 0;
-      text-align: center;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    overflow: hidden;
+    max-height: 0; /* Collapsed state */
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 999;
   }
-  .nav-links.active { display: flex; } /* Show when active */
+
+  .nav-links.active {
+    max-height: 500px; /* Expanded state (adjust if needed) */
+    opacity: 1;
+  }
+
   .nav-links li {
-      display: block; /* Stack vertically */
-      margin: 10px 0;
+    margin: 12px 0;
   }
-  .nav-links a { padding: 10px 20px; } /* Adjust padding */
-  .nav-links a.active, .nav-links a:hover { padding: 10px 25px; transform: none; } /* Simplify mobile hover */
 
-  .intro { font-size: 1.2em; padding: 20px 30px;}
-  .highlight { font-size: 1.1em; }
-  .hover-info { font-size: 14px; bottom: -30px;}
+  .nav-links a {
+    padding: 12px 20px;
+    display: block;
+    transition: background 0.3s ease;
+  }
 
-  .row { flex-direction: column; /* Stack columns */ gap: 30px;}
-  .about-col-1, .about-col-2 { flex-basis: 100%; margin: 0;} /* Full width */
-  .contact-left, .contact-right { flex-basis: 100%; }
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: #cda3a5;
+    color: #fff;
+  }
 
-  .container_01, .container_02, .container_03, .container_04 { padding: 40px 20px; }
-
-  .work-list { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;}
-  .work img { height: 200px; } /* Adjust image height */
-
-  .connection-list { grid-template-columns: 1fr; /* Single column */ gap: 20px;}
-
-  .contact-left p { font-size: 1em; }
-  .social-icons a { font-size: 1.6em; }
-  .btn.btn2 { width: 100%; margin: 10px 0; text-align: center;} /* Full width buttons */
-
-  .modal-content { width: 90%; margin: 15% auto; padding: 20px;}
-  .close { font-size: 1.6em; top: 10px; right: 15px; }
+  .nav-links li {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nav-links.active li {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 480px) {
