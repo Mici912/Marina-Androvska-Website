@@ -113,6 +113,17 @@
             color: #ff77aa;
         }
 
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.4s ease-out;
+        }
+
+            .fade-in {
+            opacity: 1;
+            transition: opacity 0.4s ease-in;
+        }
+
+
         
         /* Modal background */
         .modal {
@@ -260,9 +271,22 @@
       ];
 
       function switchGallery(direction) {
-          currentGallery = (currentGallery + direction + galleries3D.length) % galleries3D.length;
-          renderGallery();
-      }
+    const workList = document.getElementById("gallery3D");
+    workList.classList.add("fade-out");
+
+    setTimeout(() => {
+        currentGallery = (currentGallery + direction + galleries3D.length) % galleries3D.length;
+        renderGallery();
+        workList.classList.remove("fade-out");
+        workList.classList.add("fade-in");
+
+        // Remove fade-in class after it's applied to allow re-triggering later
+        setTimeout(() => {
+            workList.classList.remove("fade-in");
+        }, 400);
+    }, 400);
+}
+
 
       function renderGallery() {
           const workList = document.getElementById("gallery3D");
