@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -438,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cursor.style.left = `${e.clientX}px`;
     });
 
-    const hoverTargets = document.querySelectorAll('a, button, .tab-links');
+    const hoverTargets = document.querySelectorAll('a, button, .tab-links, .arrow, .work');
 
     hoverTargets.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('ring'));
