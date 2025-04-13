@@ -901,6 +901,12 @@ button:hover ~ .custom-cursor,
     .connection-list div h2 { font-size: 1.4em; }
     .contact-left p i { font-size: 1.3em; margin-right: 10px; }
 }
+/* Hide cursor on phones and tablets*/
+@media (hover:none) and (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
 
 
 

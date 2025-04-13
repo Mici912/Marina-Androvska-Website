@@ -58,6 +58,7 @@
             position: relative;
         }
         .work {
+            overflow: hidden;
             background: #292929;
             padding: 20px;
             border-radius: 15px;
@@ -84,14 +85,16 @@
         }
         }
         .work:hover {
-            transform: scale(1.05);
+
             box-shadow: 0 12px 20px rgba(255, 147, 187, 0.4);
         }
+
         .work img {
             width: 100%;
             height: auto;
             border-radius: 10px;
-            transition: transform 0.3s;
+            transition: transform 0.4s ease;
+            object-fit: cover;
         }
         .work:hover img {
             transform: scale(1.1);
@@ -334,7 +337,7 @@
           galleries3D[currentGallery].forEach(work => {
               workList.innerHTML += `
                   <div class="work" onclick="openModal('${work.img}', '${work.title}', '${work.desc}', '${work.video}')">
-                      <img src="${work.img}" alt="${work.title}">
+                      <img src="${work.img}" alt="${work.title}" loading="lazy">
                       <div class="layer">
                           <h3>${work.title}</h3>
                           <p>${work.desc}</p>
