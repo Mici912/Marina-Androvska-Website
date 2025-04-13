@@ -13,22 +13,35 @@
         * {
         cursor: none !important;
         }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('textures/noise.png');
+            opacity: 0.04;
+            z-index: -1;
+        }
         body {
             font-family: 'Trebuchet MS', sans-serif;
-            background: #1c1c1c;
-            color: white;
+            background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
+            color: #e0e0e0;
             margin: 0;
             padding: 0;
         }
         .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 50px 20px;
-            text-align: center;
+            background: rgba(255,255,255,0.04);
+            padding: 60px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 1100px;
+            margin: 60px auto;
         }
         .sub-title {
             font-size: 36px;
-            color: #ff93bb;
+            color: #ff77aa;
             margin-bottom: 10px;
         }
         .gallery-container {
@@ -48,6 +61,8 @@
             background: #292929;
             padding: 20px;
             border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease-in-out, box-shadow 0.3s;
             position: relative;
             width: 30%; /* Ensure all items take up equal width */
@@ -55,10 +70,22 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            animation: fadeUp 0.6s ease forwards;
+            opacity: 0;
+        }
+        @keyframes fadeUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
         }
         .work:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(255, 147, 187, 0.3);
+            box-shadow: 0 12px 20px rgba(255, 147, 187, 0.4);
         }
         .work img {
             width: 100%;
@@ -99,8 +126,16 @@
             cursor: pointer;
             position: absolute;
             top: 50%;
-            transform: translateY(-50%);
-            transition: color 0.3s;
+            opacity: 0;
+            transform: translateY(-50%) translateX(10px);
+            animation: arrowFadeIn 1s ease forwards;
+            animation-delay: 0.6s;
+        }
+        @keyframes arrowFadeIn {
+        to {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
         }
         .arrow-right {
             right: -60px;
@@ -139,6 +174,7 @@
             align-items: center;
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
+            backdrop-filter: blur(8px); /* Background Blur */
         }
 
         /* Modal content */
@@ -240,7 +276,7 @@
 
         <!-- Second Gallery: Graphic Design -->
         <div class="gallery-container">
-          <h2 class="sub-title">Graphic Design</h2>
+          <h2 class="sub-title">Graphic Design (Coming Soon)</h2>
           <div class="work-list" id="workListGD">
               <span class="arrow arrow-left" id="leftArrowGD" onclick="switchGalleryGD(-1)">&#10094;</span>
               <div id="galleryGD"></div>
