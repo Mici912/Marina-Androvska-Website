@@ -945,6 +945,17 @@ button:hover ~ .custom-cursor,
     opacity: 1;
     transform: translateY(0);
   }
+
+  .container_01,
+  .container_02,
+  .container_03,
+  .container_04 {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
 }
 
 @media (max-width: 480px) {
