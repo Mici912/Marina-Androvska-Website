@@ -25,7 +25,7 @@
             z-index: -1;
         }
         body {
-            font-family: 'Trebuchet MS', sans-serif;
+            font-family: 'Roboto Serif', 'Trebuchet MS', sans-serif; /* Added Roboto Serif */
             background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
             color: #e0e0e0;
             margin: 0;
@@ -259,62 +259,57 @@
         }
         /*   Media Design   */
 
-        @media (max-width: 768px) {
-        .work-list {
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .work {
-            width: 90%;
-            max-width: 100%;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .work img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-
-        .layer {
-            padding: 10px;
-        }
-
-        .layer h3 {
-            font-size: 1.2em;
-            margin-bottom: 8px;
-        }
-
-        .layer p {
-            font-size: 0.95em;
-            line-height: 1.4;
-        }
-
-        .arrow {
-            display: none; /* Hide arrows on mobile */
-        }
-
-        .container {
-            padding: 40px 20px;
-        }
-
-        .sub-title {
-            font-size: 24px;
-        }
-
-        .btn {
-            width: 100%;
-            text-align: center;
-            font-size: 14px;
-        }
-        }
-
-
+    @media (max-width: 768px) {
+      .work-list {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 20px;
+        padding: 10px 20px;
+        scroll-padding-left: 0; /* FIXED */
+      }
+      .work {
+        flex: 0 0 90%;
+        min-width: 90vw; /* FIXED */
+        max-width: 90vw;
+        scroll-snap-align: start;
+        box-sizing: border-box;
+      }
+      .work img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        margin-bottom: 15px;
+      }
+      .layer {
+        padding: 10px;
+      }
+      .layer h3 {
+        font-size: 1.2em;
+        margin-bottom: 8px;
+      }
+      .layer p {
+        font-size: 0.95em;
+        line-height: 1.4;
+      }
+      .arrow {
+        display: none;
+      }
+      .container {
+        padding: 40px 20px;
+      }
+      .sub-title {
+        font-size: 24px;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+      }
+    }
 
         /* Hide cursor on phones and tablets*/
         @media (hover:none) and (pointer: coarse) {
@@ -336,11 +331,11 @@
             <h2 class="sub-title">3D Art</h2>
             <div class="work-list" id="workList3D">
                 <span class="arrow arrow-left" id="leftArrow3D" onclick="switchGallery(-1)">&#10094;</span>
-                <div id="gallery3D"></div>
+                <!-- Work items will be inserted here directly -->
                 <span class="arrow arrow-right" id="rightArrow3D" onclick="switchGallery(1)">&#10095;</span>
             </div>
             <a href="pdf/Portfolio_MarinaAndrovska.pdf" class="btn" target="_blank">3D Portfolio PDF</a>
-        </div> 
+        </div>
 
         <!-- Second Gallery: Graphic Design -->
         <div class="gallery-container">
@@ -359,166 +354,168 @@
     </div>
 
     <script>
-            // 3D Art Gallery
-      let currentGallery = 0;
-      const galleries3D = [
-          [
-              { img: "img/Orc.png", title: "The Orc", desc: "A fantasy creature modeled in ZBrush & Maya.", video: "vid/Orc_01.mp4" },
-              { img: "img/Robot.png", title: "Futuristic Machine", desc: "A sci-fi robot designed with Unreal Engine.", video: "" },
-              { img: "img/WATW.PNG", title: "War Among The Whales", desc: "Game environment built with Unreal Engine.", video: "videos/whale.mp4" }
-          ],
-          [
-              { img: "img/House_03.png", title: "House Island", desc: "A 3D house environment built in Blender.", video: "" },
-              { img: "img/FrenchDistrict_03.png", title: "City of Light", desc: "A detailed 3D cityscape created in Unreal Engine.", video: "videos/city.mp4" },
-              { img: "img/Viking_01.png", title: "Viking Warrioress", desc: "A warrior character sculpted in ZBrush.", video: "" }
-          ]
-      ];
+        // 3D Art Gallery
+        let currentGallery = 0;
+        const galleries3D = [
+            [
+            { img: "img/Orc.png", title: "The Orc", desc: "A fantasy creature modeled in ZBrush & Maya.", video: "vid/Orc_01.mp4" },
+            { img: "img/Robot.png", title: "Futuristic Machine", desc: "A sci-fi robot designed with Unreal Engine.", video: "" },
+            { img: "img/WATW.PNG", title: "War Among The Whales", desc: "Game environment built with Unreal Engine.", video: "videos/whale.mp4" }
+            ],
+            [
+            { img: "img/House_03.png", title: "House Island", desc: "A 3D house environment built in Blender.", video: "" },
+            { img: "img/FrenchDistrict_03.png", title: "City of Light", desc: "A detailed 3D cityscape created in Unreal Engine.", video: "videos/city.mp4" },
+            { img: "img/Viking_01.png", title: "Viking Warrioress", desc: "A warrior character sculpted in ZBrush.", video: "" }
+            ]
+        ];
 
-      function switchGallery(direction) {
-    const workList = document.getElementById("gallery3D");
-    workList.classList.add("fade-out");
+        function switchGallery(direction) {
+            const workList = document.getElementById("workList3D");
+            workList.classList.add("fade-out");
 
-    setTimeout(() => {
-        currentGallery = (currentGallery + direction + galleries3D.length) % galleries3D.length;
-        renderGallery();
-        workList.classList.remove("fade-out");
-        workList.classList.add("fade-in");
+            setTimeout(() => {
+            currentGallery = (currentGallery + direction + galleries3D.length) % galleries3D.length;
+            renderGallery();
+            workList.classList.remove("fade-out");
+            workList.classList.add("fade-in");
 
-        // Remove fade-in class after it's applied to allow re-triggering later
-        setTimeout(() => {
-            workList.classList.remove("fade-in");
-        }, 400);
-    }, 400);
-}
-
-
-      function renderGallery() {
-          const workList = document.getElementById("gallery3D");
-          workList.innerHTML = '';
-          workList.style.display = "flex";
-          workList.style.justifyContent = "center";
-          workList.style.gap = "20px";
-          
-          galleries3D[currentGallery].forEach(work => {
-              workList.innerHTML += `
-                  <div class="work" onclick="openModal('${work.img}', '${work.title}', '${work.desc}', '${work.video}')">
-                      <img src="${work.img}" alt="${work.title}" loading="lazy">
-                      <div class="layer">
-                          <h3>${work.title}</h3>
-                          <p>${work.desc}</p>
-                      </div>
-                  </div>
-              `;
-          });
-
-          document.getElementById("leftArrow3D").style.display = currentGallery === 0 ? "none" : "block";
-          document.getElementById("rightArrow3D").style.display = currentGallery === galleries3D.length - 1 ? "none" : "block";
-      }
-
-      // Initialize 3D Gallery
-      renderGallery();
-
-      // Graphic Design Gallery
-      let currentGalleryGD = 0;
-      const galleriesGD = [
-          [
-              { img: "img/Poster_01.png", title: "Concert Poster", desc: "A vibrant concert poster design.", video: "" },
-              { img: "img/Logo_01.png", title: "Modern Logo", desc: "A sleek and minimalist logo.", video: "" },
-              { img: "img/BusinessCard_01.png", title: "Business Card", desc: "A clean and professional business card design.", video: "videos/businesscard.mp4" }
-          ],
-          [
-              { img: "img/Flyer_01.png", title: "Event Flyer", desc: "A stylish promotional flyer.", video: "" },
-              { img: "img/Magazine_01.png", title: "Magazine Layout", desc: "An elegant magazine spread design.", video: "" },
-              { img: "img/WebBanner_01.png", title: "Web Banner", desc: "A digital ad banner for social media.", video: "" }
-          ]
-      ];
-
-      function switchGalleryGD(direction) {
-          currentGalleryGD = (currentGalleryGD + direction + galleriesGD.length) % galleriesGD.length;
-          renderGalleryGD();
-      }
-
-      function renderGalleryGD() {
-          const workList = document.getElementById("galleryGD");
-          workList.innerHTML = '';
-          workList.style.display = "flex";
-          workList.style.justifyContent = "center";
-          workList.style.gap = "20px";
-          
-          galleriesGD[currentGalleryGD].forEach(work => {
-              workList.innerHTML += `
-                  <div class="work" onclick="openModal('${work.img}', '${work.title}', '${work.desc}', '${work.video}')">
-                      <img src="${work.img}" alt="${work.title}">
-                      <div class="layer">
-                          <h3>${work.title}</h3>
-                          <p>${work.desc}</p>
-                      </div>
-                  </div>
-              `;
-          });
-
-          document.getElementById("leftArrowGD").style.display = currentGalleryGD === 0 ? "none" : "block";
-          document.getElementById("rightArrowGD").style.display = currentGalleryGD === galleriesGD.length - 1 ? "none" : "block";
-      }
-
-      // Initialize Graphic Design Gallery
-      renderGalleryGD();
-
-      // Modal Functionality
-      function openModal(img, title, desc, video) {
-        const modal = document.getElementById("modal");
-        document.getElementById("modalImg").src = img;
-        document.getElementById("modalDesc").textContent = desc;
-          
-        const videoElement = document.getElementById("modalVideo");
-        const videoSrc = document.getElementById("videoSrc");
-          
-        if (video) {
-          videoElement.style.display = "block";
-          videoSrc.src = video;
-          videoElement.load(); // Reload the video source
-        } else {
-          videoElement.style.display = "none";
+            setTimeout(() => {
+                workList.classList.remove("fade-in");
+            }, 400);
+            }, 400);
         }
 
-        modal.style.display = "flex";
+        function renderGallery() {
+            const workList = document.getElementById("workList3D");
 
-      // Add 'show' class to trigger the animation
-    setTimeout(() => {
-        modal.classList.add("show");
-    }, 10); // Small delay to allow transition effect
-}
-function closeModal() {
-    const modal = document.getElementById("modal");
-    modal.classList.remove("show");
+            // Remove all old .work cards (but keep arrows)
+            [...workList.querySelectorAll('.work')].forEach(el => el.remove());
 
-    // Wait for the transition to complete before hiding
-    setTimeout(() => {
-        modal.style.display = "none";
-    }, 300); // Matches the CSS transition duration
-}
+            galleries3D[currentGallery].forEach(work => {
+            const workEl = document.createElement('div');
+            workEl.className = 'work';
+            workEl.setAttribute('onclick', `openModal('${work.img}', '${work.title}', '${work.desc}', '${work.video}')`);
+            workEl.innerHTML = `
+                <img src="${work.img}" alt="${work.title}" loading="lazy">
+                <div class="layer">
+                <h3>${work.title}</h3>
+                <p>${work.desc}</p>
+                </div>
+            `;
+            // Insert before the right arrow
+            const rightArrow = document.getElementById("rightArrow3D");
+            workList.insertBefore(workEl, rightArrow);
+            });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const cursor = document.querySelector('.custom-cursor');
+            document.getElementById("leftArrow3D").style.display = currentGallery === 0 ? "none" : "block";
+            document.getElementById("rightArrow3D").style.display = currentGallery === galleries3D.length - 1 ? "none" : "block";
 
-    window.addEventListener('mousemove', (e) => {
-      cursor.style.top = `${e.clientY}px`;
-      cursor.style.left = `${e.clientX}px`;
-    });
-
-    const hoverTargets = document.querySelectorAll('a, button, .tab-links, .arrow, .work');
-
-    hoverTargets.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('ring'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('ring'));
-    });
-
-    document.addEventListener('mouseleave', () => cursor.style.display = 'none');
-    document.addEventListener('mouseenter', () => cursor.style.display = 'block');
-  });
+            // Reset scroll to show Orc first (for mobile horizontal scroll)
+            setTimeout(() => {
+            workList.scrollLeft = 0;
+            }, 100);
+        }
+        // Initialize 3D Gallery
+        renderGallery();
       
-
-  </script>
+        // Graphic Design Gallery
+        let currentGalleryGD = 0;
+        const galleriesGD = [
+            [
+                { img: "img/Poster_01.png", title: "Concert Poster", desc: "A vibrant concert poster design.", video: "" },
+                { img: "img/Logo_01.png", title: "Modern Logo", desc: "A sleek and minimalist logo.", video: "" },
+                { img: "img/BusinessCard_01.png", title: "Business Card", desc: "A clean and professional business card design.", video: "videos/businesscard.mp4" }
+            ],
+            [
+                { img: "img/Flyer_01.png", title: "Event Flyer", desc: "A stylish promotional flyer.", video: "" },
+                { img: "img/Magazine_01.png", title: "Magazine Layout", desc: "An elegant magazine spread design.", video: "" },
+                { img: "img/WebBanner_01.png", title: "Web Banner", desc: "A digital ad banner for social media.", video: "" }
+            ]
+        ];
+      
+        function switchGalleryGD(direction) {
+            currentGalleryGD = (currentGalleryGD + direction + galleriesGD.length) % galleriesGD.length;
+            renderGalleryGD();
+        }
+      
+        function renderGalleryGD() {
+            const workList = document.getElementById("galleryGD");
+            workList.innerHTML = '';
+            workList.style.display = "flex";
+            workList.style.justifyContent = "center";
+            workList.style.gap = "20px";
+      
+            galleriesGD[currentGalleryGD].forEach(work => {
+                workList.innerHTML += `
+                    <div class="work" onclick="openModal('${work.img}', '${work.title}', '${work.desc}', '${work.video}')">
+                        <img src="${work.img}" alt="${work.title}">
+                        <div class="layer">
+                            <h3>${work.title}</h3>
+                            <p>${work.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+      
+            document.getElementById("leftArrowGD").style.display = currentGalleryGD === 0 ? "none" : "block";
+            document.getElementById("rightArrowGD").style.display = currentGalleryGD === galleriesGD.length - 1 ? "none" : "block";
+        }
+      
+        // Initialize Graphic Design Gallery
+        renderGalleryGD();
+      
+        // Modal Functionality
+        function openModal(img, title, desc, video) {
+            const modal = document.getElementById("modal");
+            document.getElementById("modalImg").src = img;
+            document.getElementById("modalDesc").textContent = desc;
+      
+            const videoElement = document.getElementById("modalVideo");
+            const videoSrc = document.getElementById("videoSrc");
+      
+            if (video) {
+                videoElement.style.display = "block";
+                videoSrc.src = video;
+                videoElement.load();
+            } else {
+                videoElement.style.display = "none";
+            }
+      
+            modal.style.display = "flex";
+      
+            setTimeout(() => {
+                modal.classList.add("show");
+            }, 10);
+        }
+      
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            modal.classList.remove("show");
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300);
+        }
+      
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.querySelector('.custom-cursor');
+      
+            window.addEventListener('mousemove', (e) => {
+                cursor.style.top = `${e.clientY}px`;
+                cursor.style.left = `${e.clientX}px`;
+            });
+      
+            const hoverTargets = document.querySelectorAll('a, button, .tab-links, .arrow, .work');
+      
+            hoverTargets.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('ring'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('ring'));
+            });
+      
+            document.addEventListener('mouseleave', () => cursor.style.display = 'none');
+            document.addEventListener('mouseenter', () => cursor.style.display = 'block');
+        });
+    </script>
+      
 
     <!-- Modal Popup -->
   <div id="modal" class="modal">
